@@ -1,0 +1,29 @@
+Design - overall
+ - Colours will be blue and white
+ - In line with other men's shed sites
+ - Clear, readable
+ - Site should only have essential features, but take care not to make it look "empty"
+ - Login button - top right, every page
+ - DMS wants to expand to social media, will want to be logged in on each page
+ 
+ Website should adapt to device - viewable on mobile and browser - "responsive design"
+ 
+ Home page
+ - Welcome users, brief background
+ - Explain purpose of site and what is available
+ - Keep features to minimum, as not to clutter
+ 
+ About page
+ - General info regarding how to use the database
+ - Brief "how to" section
+ 
+ Resource page
+ - Select tool/resource, expand section
+ - Tool info, demonstration video?
+ 
+ Support page
+ - Copy existing DMS support page 
+ - Section for email, section for phone
+ - Form for contact (first name, last name, problem, email)
+ 
+ 
