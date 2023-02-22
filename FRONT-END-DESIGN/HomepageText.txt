@@ -1,0 +1,15 @@
+Introduction
+{
+	Our purpose - Our Shed in dunfermline is a place of informal learning and skill-sharing, 
+	of individual pursuits and community projects, of purpose, achievement and social interaction. 
+	A place of leisure where local men will come together to work, play or just hang out with others.
+}
+
+Booking a tool
+{
+	To book a tool, first you must login 
+	Find a tool or product you are interested in booking
+	...
+}
+
+~ Where to find us/Directions to be included ~ 
