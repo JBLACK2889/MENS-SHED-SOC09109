@@ -1,14 +1,24 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='shed.css')}}">
+<title>Page Title</title>
+</head>
+<body>
 
-{% block content %}
-    <h1>{% block title %} Users {% endblock %}</h1>
-    {% for user in users %}
-        <div class='post'>
-            <p>{{ user['userName'] }}</p>
-            <p>{{ user['password'] }}</p>
-            <p>{{ user['admin_access'] }}</p>
-            <p>{{ user['Restriced_view'] }}</p>
-            <p>{{ user['Training_done'] }}</p>
-        </div>
-    {% endfor %}
-{% endblock %}
+<h1>Dunfermline Men's Shed</h1>
+
+<ul>
+  <li><a href="{{ url_for('home')}}">Home</a></li>
+  <li><a href="{{ url_for('about')}}">About</a></li>
+  <li><a href="{{ url_for('booking')}}">Booking</a></li>
+  <li><a href="{{ url_for('resource')}}">Resource Library</a></li>
+  <li><a href="{{ url_for('support')}}">Support</a></li>
+</ul>
+
+<p>Welcome!</p>
+
+<img src="{{ url_for('static', filename='men-at-work.jpg')}}" alt="Workers" height="300">
+
+</body>
+</html>
