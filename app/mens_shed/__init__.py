@@ -1,5 +1,5 @@
 #This is the file which tells python that this is a package and also initalises and ties together everything we need for the app
-
+import sqlite3
 from flask import Flask
 
 

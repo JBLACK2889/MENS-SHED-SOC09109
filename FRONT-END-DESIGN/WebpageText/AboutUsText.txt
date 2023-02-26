@@ -1,0 +1,14 @@
+Company History
+{
+	
+}
+
+Staff ~ include image of each member of team
+{
+	Ron Skirving ~ Ron is our Chairman and keeps everything running smoothly. 
+	He also provides web and e-mail support. As a digital consultant, 
+	Ron advises on marketing the Dunfermline Men's Shed to the local community.
+	He is also a Trustee of the Dunfermline Men's Shed charity.
+
+	Jim Leishman - Patron ~
+}
