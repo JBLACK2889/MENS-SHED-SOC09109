@@ -16,6 +16,10 @@ training_needed BOOLEAN
 CREATE TABLE Users(
 userName TEXT PRIMARY KEY,
 password TEXT NOT NULL,
+name TEXT NOT NULL,
+address TEXT NOT NULL,
+phoneNumber TEXT,
+email TEXT,
 admin_access BOOLEAN,
 Restriced_view BOOLEAN,
 Training_done BOOLEAN
