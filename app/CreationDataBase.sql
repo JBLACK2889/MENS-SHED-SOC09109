@@ -7,7 +7,7 @@ vis_test TEXT,
 pat_test TEXT,
 donated_by TEXT,
 date_listed DATE NOT NULL,
-picture IMAGE,
+picture BLOB,
 ppe_needed BOOLEAN,
 Restriced_item BOOLEAN,
 training_needed BOOLEAN
