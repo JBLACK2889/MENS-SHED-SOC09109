@@ -1,7 +1,7 @@
 #This is the file that contains all the logic for each page route
 
 from flask import render_template
-from mens_shed import app
+from mens_shed import app, bcrypt
 import sqlite3
 
 #Set up database connection
