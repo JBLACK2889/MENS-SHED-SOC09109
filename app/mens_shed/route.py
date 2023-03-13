@@ -1,12 +1,12 @@
 #This is the file that contains all the logic for each page route
 
 from flask import render_template
-from mens_shed import app
+from mens_shed import app, bcrypt
 import sqlite3
 
 #Set up database connection
 def get_db_connection():
-    conn = sqlite3.connect('database.sqlite')
+    conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
