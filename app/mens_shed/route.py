@@ -40,3 +40,9 @@ def resource():
 @app.route("/support")
 def support():
     return render_template('support.html', title='Support')
+
+
+#This is the login page route
+@app.route("/login")
+def login():
+    return render_template('login.html', title='Login')
