@@ -41,6 +41,10 @@ def resource():
 def support():
     return render_template('support.html', title='Support')
 
+#This is the signup page route
+@app.route("/signup")
+def signup():
+    return render_template('signup.html', title='Sign up')
 
 #This is the login page route
 @app.route("/login")

@@ -39,14 +39,14 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 	  <img src="https://dunfermlineshed.org.uk/data/files/dms-logo-crest-trans.png" class="img-responsive" style="width:7.5%" alt="Image">
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/home-boot.html">Home</a></li>
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/aboout-boot.html">About</a></li>
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/booking_boot.html">Booking</a></li>
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/library-boot.html">Resource Library</a></li>
-		<li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/support_boot.html">Support</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li class="active"><a href="{{ url_for('home')}}">Home</a></li>
+            <li><a href="{{ url_for('about')}}">About</a></li>
+            <li><a href="{{ url_for('booking')}}">Booking</a></li>
+            <li><a href="{{ url_for('resource')}}">Resource Library</a></li>
+        <li><a href="{{ url_for('support')}}">Support</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
