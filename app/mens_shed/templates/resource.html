@@ -1,71 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Resource Library - Dunfermline Men's Shed</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-	  background-color: #0049ac;
-	  color: white;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-    }
-  }
-  </style>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-	  <img src="https://dunfermlineshed.org.uk/data/files/dms-logo-crest-trans.png" class="img-responsive" style="width:7.5%" alt="Image">
-          <li class="active"><a href="{{ url_for('home')}}">Home</a></li>
-          <li><a href="{{ url_for('about')}}">About</a></li>
-          <li><a href="{{ url_for('booking')}}">Booking</a></li>
-          <li><a href="{{ url_for('resource')}}">Resource Library</a></li>
-      <li><a href="{{ url_for('support')}}">Support</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-	
-
-
+{% extends 'home.html' %}
+{% block title %} Resource Library - Dunfermline Men's Shed{% endblock  %}
+{% block content %}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -134,13 +69,5 @@
     </div>			
  
   </div>
-</div><br>
-
-
-
-</body>
-<footer class="container-fluid text-center">
-  <p>Copyright ©2022 Dunfermline Men's Shed, All Rights Reserved.  
-	Registered Charity SC051302.</p>
-</footer>
-</html>
+</div>
+{% endblock %}
