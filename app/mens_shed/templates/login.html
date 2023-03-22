@@ -5,21 +5,20 @@
   <h3>Login</h3><br>
 
   <div class="well">
-    <p>Here, you can login to your account</p>
-		<form>
+    <p> Here, you can login to your account</p>
+		<form action="" method="post">
 		<label for="uname">Username:</label><br>
-		<input type="text" id="uname" name="uname" ><br>
+		<input type="text" id="uname" name="uname" value="{{ request.form.uname}}" ><br>
 		<br><br>
 		<label for="pword">Password:</label><br>
-		<input type="text" id="pword" name="pword" ><br>
+		<input type="text" id="pword" name="pword" value="{{request.form.pword}}"><br>
 		</form>
-	  </p>
-	  <input type="submit" value="Submit"> 
+	</p>
+	<input class="btn btn-default" type="submit" value="Login"> 
     <br><br>
-    <p>Having problems? For issues such as changing passwords, setting up your account, head to the support page to contact us</p>
-	  
-	  </p>    
+	{% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}
+	{{% end if %}}
   </div>
-
 </div>
 {% endblock %}
