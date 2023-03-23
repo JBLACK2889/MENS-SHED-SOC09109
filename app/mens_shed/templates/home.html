@@ -9,24 +9,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
+    .carousel-inner img {
+        width: 100%; /* Set width to 100% */
+        margin: auto;
+        min-height:200px;
     }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
     }
-  }
   </style>
   {% endblock %}
 </head>
@@ -111,10 +105,7 @@
 </div><br>
 {% endblock content %}
 
-<footer class="container-fluid text-center">
-  <p>Copyright ©2022 Dunfermline Men's Shed, All Rights Reserved.  
-	Registered Charity SC051302. Powered by Delta Digital</p>
-</footer>
+{% include 'footer.html' %}
 
 </body>
 </html>

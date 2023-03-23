@@ -11,7 +11,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+      <img src="{{url_for('static', filename='grass2.jpg')}}" alt="grass">
       <div class="carousel-caption">
         <h3>Sell $</h3>
         <p>Money Money.</p>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="item">
-      <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+      <img src="{{url_for('static', filename='grass2.jpg')}}" alt="grass">
       <div class="carousel-caption">
         <h3>More Sell $</h3>
         <p>Lorem ipsum...</p>
@@ -47,9 +47,8 @@
     </div>
 
  <div class="col-sm-4"> 
-    <p><img src="https://dunfermlineshed.org.uk/data/files/ronskirving-deltadigital.jpg" class="img-responsive" style="height:400px" alt="Image">
-  Ron Skirving
-  <br><br>
+    <p><img src="{{url_for('static', filename='ronskirving-deltadigital.jpg')}}" style="height:400px" alt="Ron Skirving">
+  <p>Ron Skirving</p>
   Ron is our Chairman and keeps everything running smoothly. 
   He also provides web and e-mail support. As a digital consultant, 
   Ron advises on marketing the Dunfermline Men's Shed to the local community.
@@ -59,9 +58,8 @@
 
 
 <div class="col-sm-4"> 
-    <p><img src="https://dunfermlineshed.org.uk/data/files/michael.jpg" class="img-responsive" style="height:400px" alt="Image" >
-  Mike Rowlinson
-  <br><br>
+    <p><img src="{{url_for('static', filename='mikeRowlinson.jpg')}}" style="height:400px" alt="Mike Rowlinson">
+  <p>Mike Rowlinson</p>
   Mike is our Secretary and is responsible for recording of the minutes at Dunfermline
   Men's Shed  meetings, He also handles communications including incoming calls and
   emails. Mike also helps with enewsletters, administration of our website and membership
@@ -70,9 +68,8 @@
   </div>
 
 <div class="col-sm-4"> 
-  <img src="https://dunfermlineshed.org.uk/data/files/richard.jpg" class="img-responsive" style="height:400px" alt="Image" >
-    <p>Richard Lawrence
-  <br><br>
+  <p><img src="{{url_for('static', filename='richardLawrence.jpg')}}" class="img-responsive" style="height:400px" alt="Richard Lawrence"></p>
+  <p>Richard Lawrence</p>
   Richard is  the Dunfermline Men's Shed  Business Advisor. He has a great deal of experience in the 3rd sector and funding applications. He also works with leather and has already provided
   us with a demonstration! He is also a Trustee of the Dunfermline Men's Shed charity.
   </p>    

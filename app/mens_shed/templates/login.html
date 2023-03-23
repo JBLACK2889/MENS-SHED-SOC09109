@@ -8,17 +8,17 @@
     <p> Here, you can login to your account</p>
 		<form action="" method="post">
 		<label for="uname">Username:</label><br>
-		<input type="text" id="uname" name="uname" value="{{ request.form.uname}}" ><br>
+		<input type="text" id="uname" name="uname"><br>
 		<br><br>
 		<label for="pword">Password:</label><br>
-		<input type="text" id="pword" name="pword" value="{{request.form.pword}}"><br>
+		<input type="text" id="pword" name="pword" ><br>
 		</form>
 	</p>
 	<input class="btn btn-default" type="submit" value="Login"> 
     <br><br>
-	{% if error %}
-    <p class="error"><strong>Error:</strong> {{ error }}
-	{{% end if %}}
+	
+    <p></p>Error:</strong> {{ error }}
+	
   </div>
 </div>
 {% endblock %}
