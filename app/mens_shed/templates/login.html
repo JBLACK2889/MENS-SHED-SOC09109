@@ -1,24 +1,42 @@
 {% extends 'home.html' %}
-{% block title %} Login - Dunfermline Men's Shed{% endblock  %}
 {% block content %}
-<div class="container text-center">    
-  <h3>Login</h3><br>
-
-  <div class="well">
-    <p> Here, you can login to your account</p>
-		<form action="" method="post">
-		<label for="uname">Username:</label><br>
-		<input type="text" id="uname" name="uname" value="{{ request.form.uname}}" ><br>
-		<br><br>
-		<label for="pword">Password:</label><br>
-		<input type="text" id="pword" name="pword" value="{{request.form.pword}}"><br>
-		</form>
-	</p>
-	<input class="btn btn-default" type="submit" value="Login"> 
-    <br><br>
-	{% if error %}
-    <p class="error"><strong>Error:</strong> {{ error }}
-	{{% end if %}}
-  </div>
-</div>
+    <div class="content-section">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				<div class="alert alert-{{ category }}">
+				{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control form-control-lg") }}
+                    {% for error in form.email.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control form-control-lg") }}
+                    {% for error in form.password.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Don't Have An Account? <a class="ml-2" href="{{ url_for('signup') }}">Sign Up</a>
+            </small>
+        </div>
+    </div>
 {% endblock %}

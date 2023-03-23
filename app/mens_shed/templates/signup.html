@@ -1,29 +1,71 @@
 {% extends 'home.html' %}
 {% block title %} Sign Up - Dunfermline Men's Shed{% endblock  %}
 {% block content %}
-<div class="container text-center">    
-  <h3>Sign Up</h3><br>
-  <div class="row">
-  <div class="well">
-       <p>Here, you can create an account if you don't already have one
-   <div> 
-	  <br>
-		Create account:
-		<br><br>
-		<form>
-		  <label for="fname">Username:</label><br>
-		  <input type="text" id="fname" name="fname" ><br>
-		  <label for="pass">Password:</label><br>
-		  <input type="text" id="pass" name="pass"><br>
-		  <label for="confirm">Confirm Password:</label><br>
-		  <input type="text" id="confirm" name="confirm"><br>
-		  <label for="email">E-Mail:</label><br>
-		  <input type="text" id="email" name="email"><br>
-		  <br>
-		  <input type="submit" value="Submit">
-		</form>
-	  </p>   
-	  </p>    
-    </div>
-  </div>
+<div class="content-section">
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				<div class="alert alert-{{ category }}">
+				{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form method="POST">
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">Join Today</legend>
+			<div class="form-group">
+				{{ form.username.label(class="form-control-label") }}
+				{{ form.username(class="form-control form-control-lg") }}
+				{% for error in form.username.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.email.label(class="form-control-label") }}
+				{{ form.email(class="form-control form-control-lg") }}
+				{% for error in form.email.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.name.label(class="form-control-label") }}
+				{{ form.name(class="form-control form-control-lg") }}
+				{% for error in form.name.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.address.label(class="form-control-label") }}
+				{{ form.address(class="form-control form-control-lg") }}
+				{% for error in form.address.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.password.label(class="form-control-label") }}
+				{{ form.password(class="form-control form-control-lg") }}
+				{% for error in form.password.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.confirm_password.label(class="form-control-label") }}
+				{{ form.confirm_password(class="form-control form-control-lg") }}
+				{% for error in form.confirm_password.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+		</fieldset>
+		<div class="form-group">
+			{{ form.submit(class="btn btn-outline-info") }}
+		</div>
+	</form>
+	<div class="border-top pt-3">
+		<small class="text-muted">
+			Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
+		</small>
+	</div>
+</div>
 {% endblock %}
