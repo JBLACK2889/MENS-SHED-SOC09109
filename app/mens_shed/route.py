@@ -93,6 +93,7 @@ def login_url():
                   (form.email.data, form.password.data))
         user = c.fetchone()
         conn.close()
+        # Function to Kepp user details in the session
         if user:
             session['email'] = user[0]  # store user email in session
             flash('You have been logged in!', 'success')

@@ -35,7 +35,7 @@
                     {% if 'email' in session %}
                         <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="{{ url_for('login_url')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         <li><a href="{{ url_for('signup')}}">Sign Up</a></li>
                     {% endif %}
                 </ul>
