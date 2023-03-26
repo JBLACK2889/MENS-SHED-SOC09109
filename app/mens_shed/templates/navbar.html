@@ -1,0 +1,48 @@
+<style>
+    .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+        background-color: #0049ac;
+        color: rgb(255, 255, 255);
+      }
+</style>
+
+<nav class="navbar navbar-inverse fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img src="https://dunfermlineshed.org.uk/data/files/dms-logo-crest-trans.png" class="img-responsive" style="width:6%" alt="Image">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="navbar-icon"></span>
+                <span class="navbar-icon"></span>   
+                <span class="navbar-icon"></span>   
+            </button>
+        </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    {% if 'email' in session %}
+                        <li><a href="{{ url_for('booking')}}">Booking</a></li>
+                        <li><a href="{{ url_for('resource')}}">Resource Library</a></li>
+                        <li><a href="{{ url_for('home')}}">Home</a></li>
+                        <li><a href="{{ url_for('about')}}">About</a></li>
+                        <li><a href="{{ url_for('support')}}">Support</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('home')}}">Home</a></li>
+                        <li><a href="{{ url_for('about')}}">About</a></li>
+                        <li><a href="{{ url_for('support')}}">Support</a></li>
+                        <!-- temp for login-->
+                        <li><a href="{{ url_for('booking')}}">Booking</a></li>
+                        <li><a href="{{ url_for('resource')}}">Resource Library</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if 'email' in session %}
+                        <li><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login_url')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="{{ url_for('signup')}}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+        
+        </div>
+  </div>
+</nav>

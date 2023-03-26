@@ -1,58 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Support - Dunfermline Men's Shed</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-	  background-color: #0049ac;
-	  color: white;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
- 
-  </style>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <img src="https://dunfermlineshed.org.uk/data/files/dms-logo-crest-trans.png" class="img-responsive" style="width:7.5%" alt="Image">
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ url_for('home')}}">Home</a></li>
-        <li><a href="{{ url_for('about')}}">About</a></li>
-        <li><a href="{{ url_for('booking')}}">Booking</a></li>
-        <li><a href="{{ url_for('resource')}}">Resource Library</a></li>
-		<li><a href="{{ url_for('support')}}">Support</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-  
+{% extends 'home.html' %}
+{% block title %} Resource Library - Dunfermline Men's Shed{% endblock  %}
+{% block content %}
 <div class="container text-center">    
   <h3>Support</h3><br>
   <div class="row">
@@ -90,9 +38,5 @@
 	  Meetings start at 2pm and finish at 4pm.<br>
 	  To find out more, just come along to our weekly meeting, enjoy a cup of tea or coffee in the company of our 37 full members. Only after a couple of meetings 
 	  will you be asked if you wish to join as a full member.<br>
-}
-	  </div>
-<br>
-  
-</body>
-</html>
+	</div>
+{% endblock  %}
