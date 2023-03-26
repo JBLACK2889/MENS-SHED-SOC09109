@@ -1,0 +1,6 @@
+userNameuserName, password, name, address, phoneNumber, email, admin_access, Restriced_view, Training_done
+'TestAdmin','Password123','tester','test','NULL','NULL',True,False,True
+'TestUser1','Password123','tester','test','NULL','NULL',False,False,True
+'TestUser2','Password123','tester','test','NULL','NULL',False,True,False
+'TestUser3','Password123','tester','test','NULL','NULL',False,True,True
+'TestUser4','Password123','tester','test','NULL','NULL',False,False,False
