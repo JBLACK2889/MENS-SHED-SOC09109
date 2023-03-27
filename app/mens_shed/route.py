@@ -2,7 +2,7 @@
 
 from flask import render_template, request, session, redirect, url_for, flash
 from mens_shed import app, bcrypt
-from mens_shed.forms import RegisterForm, LoginForm
+from mens_shed.forms import RegisterForm, LoginForm, ToolForm
 from flask_login import login_required, login_manager, login_user, logout_user, current_user
 from mens_shed.modules import User
 import sqlite3
@@ -37,9 +37,39 @@ def booking():
 
 
 #This is the resource page route
-@app.route("/resource")
+@app.route("/resource", methods=['GET', 'POST'])
 def resource():
-    return render_template('resource.html', title='Resources')
+    form = ToolForm()
+    results = []
+
+
+    if form.validate_on_submit():
+        search = form.search.data 
+
+        conn = sqlite3.connect(app.config['DATABASE'])
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT item, catagory, date_listed, picture FROM Tools WHERE item LIKE ?", ('%' + search + '%',))
+        results = cursor.fetchall()
+
+    return render_template('resource.html', title='Resources', form=form, results=results)
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form = ToolForm()
+    results = []
+
+    if form.validate_on_submit():
+        search = form.search.data
+
+        conn = sqlite3.connect(app.config['DATABASE'])
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT item, catagory, date_listed, picture FROM Tools WHERE item LIKE ?", ('%' + search + '%',))
+        results = cursor.fetchall()
+
+    return render_template('search.html', form=form, results=results)
 
 
 #This is the support page route
