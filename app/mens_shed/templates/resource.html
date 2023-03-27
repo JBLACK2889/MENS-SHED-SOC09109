@@ -50,7 +50,22 @@
 	  <br><br>
 		The Men's Shed offers many tools for its members. Here, you can view what we have to offer.
 	  </p>    
-    </div>	
+    <h1>Search for a tool</h1>
+
+    <form method="POST" action="{{ url_for('search') }}">
+      {{ form.csrf_token }}
+      {{ form.search.label }} {{ form.search(size=20) }} {{ form.submit() }}
+    </form>
+  
+    {% if results %}
+      <h2>Results</h2>
+      <ul>
+        {% for tool in results %}
+          <li>{{ tool.item }} - {{ tool.catagory }} - {{ tool.date_listed }} - {{ tool.picture}}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>	
 	
 <div class="col-sm-4"> 
       <img src="https://via.placeholder.com/350x350?text=Books" alt="Image">
