@@ -1,70 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home - Dunfermline Men's Shed</title>
+  {% block head %}
+  <title>{% block title %} {% endblock %} Home - Dunfermline Men's Shed</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-	  background-color: #0049ac;
-	  color: white;
+    .carousel-inner img {
+        width: 100%; /* Set width to 100% */
+        margin: auto;
+        min-height:200px;
     }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
     }
-  }
   </style>
+  {% endblock %}
 </head>
+
 <body>
+{% include 'navbar.html' %}
+{% block content %}
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+    {{ message }}
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-		<img src="https://dunfermlineshed.org.uk/data/files/dms-logo-crest-trans.png" class="img-responsive" style="width:7.5%" alt="Image">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/aboout-boot.html">About</a></li>
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/booking_boot.html">Booking</a></li>
-        <li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/library-boot.html">Resource Library</a></li>
-		<li><a href="file:///C:/Users/joe28/OneDrive/Documents/Men's%20Shed/support_boot.html">Support</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-	
-
+  {% endfor %}
+{% endif %}
+{% endwith %}
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -76,7 +49,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="https://via.placeholder.com/1200x200?text=Another" alt="Image">
+        <img src="{{url_for('static', filename='men-at-work.jpg')}}" alt="Men At Work">
         <div class="carousel-caption">
           <h3>Contact Us</h3>
           <p>Let us know if you have a problem</p>
@@ -84,7 +57,7 @@
       </div>
 
       <div class="item">
-        <img src="https://via.placeholder.com/1200x200?text=Another" alt="Image">
+        <img src="{{url_for('static', filename='men-at-work.jpg')}}" alt="Men At Work">
         <div class="carousel-caption">
           <h3>Resource Library</h3>
           <p>View our selection of tools and resources</p>
@@ -115,7 +88,7 @@
 	  
 	 <h3>Where to find us</h3>
       <div class="well">
-       <p><img src="https://dunfermlineshed.org.uk/data/files/dms-meeting-room-location-map.jpg" style="width:50%" alt="Image"></p>
+       <p><img src="{{url_for('static', filename='dms-meeting-bird-eye-view.jpg')}}" alt="Meeting Room Location" style="width: 75%;"></p>
       </div>
     </div>
   </div>
@@ -140,11 +113,9 @@
  
   </div>
 </div><br>
+{% endblock content %}
 
-<footer class="container-fluid text-center">
-  <p>Copyright ©2022 Dunfermline Men's Shed, All Rights Reserved.  
-	Registered Charity SC051302.</p>
-</footer>
+{% include 'footer.html' %}
 
 </body>
 </html>
