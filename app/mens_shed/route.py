@@ -35,10 +35,9 @@ def about():
 def booking():
     return render_template('booking.html', title='Booking')
 
-
-#This is the resource page route
-@app.route("/resource", methods=['GET', 'POST'])
-def resource():
+#This is the tools library page route
+@app.route("/tools")
+def tools():
     form = ToolForm()
     results = []
 
@@ -51,8 +50,12 @@ def resource():
 
         cursor.execute("SELECT item, catagory, date_listed, picture FROM Tools WHERE item LIKE ?", ('%' + search + '%',))
         results = cursor.fetchall()
+    return render_template('tools.html', title='Tools', form=form, results=results)
 
-    return render_template('resource.html', title='Resources', form=form, results=results)
+#This is the resource page route
+@app.route("/resource", methods=['GET', 'POST'])
+def resource():
+    return render_template('resource.html', title='Resources')
 
 
 @app.route('/search', methods=['GET', 'POST'])
