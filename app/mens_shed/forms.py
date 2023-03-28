@@ -7,7 +7,7 @@ from mens_shed.modules import User
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    name = StringField('Fulle Name', validators=[DataRequired()])
+    name = StringField('Full Name', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
