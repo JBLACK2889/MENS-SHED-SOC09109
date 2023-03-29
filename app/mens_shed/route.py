@@ -35,6 +35,11 @@ def about():
 def booking():
     return render_template('booking.html', title='Booking')
 
+#This is the Admin page route
+@app.route("/admin")
+def admin():
+    return render_template('admin.html', title='Admin')
+
 #This is the tools library page route
 @app.route("/tools")
 def tools():
