@@ -1,7 +1,9 @@
 {% extends 'home.html' %}
 {% block title %} Sign Up - Dunfermline Men's Shed{% endblock  %}
 {% block content %}
-<div class="content-section">
+<br>
+<div class="container text-center" style="width: 500px">
+	<div class="well">
 	{% with messages = get_flashed_messages(with_categories=true) %}
 		{% if messages %}
 			{% for category, message in messages %}
@@ -66,6 +68,7 @@
 		<small class="text-muted">
 			Already Have An Account? <a class="ml-2" href="{{ url_for('login_url') }}">Sign In</a>
 		</small>
+	</div>
 	</div>
 </div>
 {% endblock %}
