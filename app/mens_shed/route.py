@@ -2,9 +2,10 @@
 
 from flask import render_template, request, session, redirect, url_for, flash
 from mens_shed import app, bcrypt
-from mens_shed.forms import RegisterForm, LoginForm, ToolForm
+from mens_shed.forms import RegisterForm, LoginForm, ToolForm, BookingForm
 from flask_login import login_required, login_manager, login_user, logout_user, current_user
 from mens_shed.modules import User
+from datetime import datetime, time
 import sqlite3
 from mens_shed import app
 
@@ -31,9 +32,60 @@ def about():
 
 
 #This is the booking page route
-@app.route("/booking")
+@app.route("/booking", methods=['GET', 'POST'])
 def booking():
-    return render_template('booking.html', title='Booking')
+    conn = get_db_connection()
+    cur = conn.cursor()
+    form = BookingForm()
+
+    #Get the details on the new booking from the form
+    if form.validate_on_submit():
+        name = form.name.data
+        item_id = form.item_id.data
+        
+        #Covert to String
+        booking_date = datetime.strptime(request.form['booking_date'], '%Y-%m-%d').date()
+        start_time = datetime.strptime(request.form['start_time'], '%H:%M').time()
+        end_time = datetime.strptime(request.form['end_time'], '%H:%M').time()
+
+        # Format the time objects as strings in the correct format
+        start_time_str = start_time.strftime('%H:%M:%S')
+        end_time_str = end_time.strftime('%H:%M:%S')
+
+        # Format the datetime object as a string in the correct format
+        booking_date_str = booking_date.strftime('%Y-%m-%d')
+
+        # Check if there are any existing bookings that overlap with the new booking
+        existing_bookings = cur.execute("SELECT * FROM Bookings WHERE itemID=? AND Booked_for_day=? AND ((Booked_for_start>=? AND Booked_for_start<?) OR (booked_out_till>? AND booked_out_till<=?) OR (Booked_for_start<=? AND booked_out_till>=?))", (item_id, booking_date_str, start_time_str, end_time_str, start_time_str, end_time_str, start_time_str, end_time_str)).fetchall()
+
+        if existing_bookings:
+            # If there are overlapping bookings, display an error message
+            flash('Sorry, that item is already booked during that time slot. Please choose a different time.', 'danger')
+        else:
+            # If there are no overlapping bookings, add the new booking to the database
+            cur.execute('INSERT INTO Bookings (userName, itemID, Booked_for_day, Booked_for_start, booked_out_till) VALUES (?, ?, ?, ?, ?)', (name, item_id, booking_date_str, start_time_str, end_time_str))
+            conn.commit()
+
+            # Get the updated list of bookings
+            booking = cur.execute('SELECT * FROM Bookings').fetchall()
+
+            # Redirect to the bookings page to display the updated list of bookings
+            return redirect(url_for('booking'))
+        
+    #Get the curret time
+    now = datetime.now()
+
+    #Convert current time to string
+    now_str = now.strftime('%Y-%m-%d %H:%M:%S')
+
+    #Execute delete query
+    cur.execute('DELETE FROM Bookings WHERE booked_out_till < ?', (now_str,))
+
+    conn.commit()
+
+    #If no new booking has been submitted, display the list of current bookings
+    booking = cur.execute('SELECT * FROM Bookings').fetchall() 
+    return render_template('booking.html', title='Booking', booking=booking, form=form)
 
 #This is the Admin page route
 @app.route("/admin")
