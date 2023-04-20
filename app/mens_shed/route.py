@@ -38,6 +38,23 @@ def booking():
     cur = conn.cursor()
     form = BookingForm()
 
+    #Get the curret time
+    now = datetime.now()
+
+    #Convert current time to string
+    now_str = now.strftime('%Y-%m-%d %H:%M:%S')
+
+    # Print the current time string
+    print('Current time:', now_str)
+
+    # Execute delete query
+    cur.execute('DELETE FROM Bookings WHERE booked_out_till > datetime(?)', (now_str,))
+
+    # Print the number of rows affected by the delete query
+    print(cur.rowcount, 'rows deleted')
+
+    conn.commit()
+
     #Get the details on the new booking from the form
     if form.validate_on_submit():
         name = form.name.data
@@ -71,17 +88,6 @@ def booking():
 
             # Redirect to the bookings page to display the updated list of bookings
             return redirect(url_for('booking'))
-        
-    #Get the curret time
-    now = datetime.now()
-
-    #Convert current time to string
-    now_str = now.strftime('%Y-%m-%d %H:%M:%S')
-
-    #Execute delete query
-    cur.execute('DELETE FROM Bookings WHERE booked_out_till < ?', (now_str,))
-
-    conn.commit()
 
     #If no new booking has been submitted, display the list of current bookings
     booking = cur.execute('SELECT * FROM Bookings').fetchall() 
