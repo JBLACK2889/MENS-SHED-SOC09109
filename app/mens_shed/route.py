@@ -41,7 +41,7 @@ def booking():
     #Get the curret time
     now = datetime.now()
 
-    #Convert current time to string
+    #Convert current time to a string
     now_str = now.strftime('%Y-%m-%d %H:%M:%S')
 
     # Print the current time string
