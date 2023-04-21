@@ -8,6 +8,7 @@ from mens_shed.modules import User
 from datetime import datetime, time
 import sqlite3
 from mens_shed import app
+from functools import wraps
 
 #Set up database connection
 def get_db_connection():
@@ -37,6 +38,23 @@ def booking():
     conn = get_db_connection()
     cur = conn.cursor()
     form = BookingForm()
+
+    #Get the curret time
+    now = datetime.now()
+
+    #Convert current time to a string
+    now_str = now.strftime('%Y-%m-%d %H:%M:%S')
+
+    # Print the current time string
+    print('Current time:', now_str)
+
+    # Execute delete query
+    cur.execute('DELETE FROM Bookings WHERE booked_out_till < time(?)', (now_str,))
+
+    # Print the number of rows affected by the delete query
+    print(cur.rowcount, 'rows deleted')
+
+    conn.commit()
 
     #Get the details on the new booking from the form
     if form.validate_on_submit():
@@ -71,26 +89,11 @@ def booking():
 
             # Redirect to the bookings page to display the updated list of bookings
             return redirect(url_for('booking'))
-        
-    #Get the curret time
-    now = datetime.now()
-
-    #Convert current time to string
-    now_str = now.strftime('%Y-%m-%d %H:%M:%S')
-
-    #Execute delete query
-    cur.execute('DELETE FROM Bookings WHERE booked_out_till < ?', (now_str,))
-
-    conn.commit()
 
     #If no new booking has been submitted, display the list of current bookings
     booking = cur.execute('SELECT * FROM Bookings').fetchall() 
     return render_template('booking.html', title='Booking', booking=booking, form=form)
 
-#This is the Admin page route
-@app.route("/admin")
-def admin():
-    return render_template('admin.html', title='Admin')
 
 #This is the tools library page route
 @app.route("/tools")
@@ -153,7 +156,7 @@ def signup():
             conn.close()
             return redirect(url_for('signup'))
         
-        # Check if the username already exists in the database
+        # Check if the email already exists in the database
         existing_email = c.execute('SELECT email FROM Users WHERE email = ?', (form.email.data,)).fetchone()
 
         if existing_email:
@@ -172,6 +175,32 @@ def signup():
         
     return render_template('signup.html', title='Signup', form=form)
 
+def admin_required(func):
+    def wrapper(*args, **kwargs):
+        # Get a connection to the database
+        conn = get_db_connection()
+        
+        # Check if the user is logged in and has admin access
+        if 'email' in session:
+            admin_access = session['admin_access']
+            cursor = conn.cursor()
+            cursor.execute('SELECT admin_access FROM Users WHERE admin_access = ?', (admin_access,))
+            user = cursor.fetchone()
+            cursor.close()
+            if user and user[0]:
+                # User has admin access - allow access to admin page
+                conn.close()
+                return func(*args, **kwargs)
+        
+        # User doesn't have admin access or is not logged in - redirect to error page
+        conn.close()
+        flash('You do not have permission to access this page.', 'danger')
+        return redirect(url_for('home'))
+    
+    # Set the name of the wrapper function to the name of the original function
+    wrapper.__name__ = func.__name__
+    return wrapper
+
 #This is the login page route
 @app.route("/login", methods=['POST', 'GET'])
 def login_url():
@@ -186,15 +215,22 @@ def login_url():
         # Function to Kepp user details in the session
         if user:
             session['email'] = user[0]  # store user email in session
+            session['admin_access'] = user[6]
             flash('You have been logged in!', 'success')
             return redirect(url_for('home'))
         else:
             flash('Login unsuccessful. Please check email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
 
+#This is the Admin page route
+@app.route("/admin")
+@admin_required
+def admin():
+    return render_template('admin.html', title='Admin')
 
 @app.route("/logout")
 def logout():
     session.pop('email', None)
+    session.pop('admin_access', None)
     flash('You have been logged out.', 'success')
     return redirect(url_for('home'))
