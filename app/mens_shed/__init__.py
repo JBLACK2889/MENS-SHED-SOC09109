@@ -7,7 +7,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-app.config['SECRET_KEY'] = 'SECRET_KEY'
+app.config['SECRET_KEY'] = '460e9ab5e552fd6c30ede37d96298a41'
 app.config['DATABASE'] = 'database.db'
 
 # Initialize the LoginManager object
