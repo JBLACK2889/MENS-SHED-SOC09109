@@ -28,7 +28,7 @@
 <body>
 {% include 'navbar.html' %}
 {% block content %}
-
+<!-- Send user message -->
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
   {% for category, message in messages %}
@@ -39,6 +39,7 @@
 {% endif %}
 {% endwith %}
 
+<!-- Slidng images -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">

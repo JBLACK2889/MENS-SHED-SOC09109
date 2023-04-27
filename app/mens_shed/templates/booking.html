@@ -13,7 +13,7 @@
       </div>
   </div>
 </div>
-
+<!-- -->
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
@@ -24,7 +24,9 @@
     {% endif %}
 {% endwith %}
 
+<!-- Form submits data to a server -->
 <form method="POST" action="{{ url_for('booking') }}">
+  <!-- Cross-Site request Forgery security measure to ensure booking is legitimate -->
   {{ form.csrf_token }}
   <div class="form-group">
     {{ form.name.label }}
@@ -49,6 +51,7 @@
   <button type = "submit" class="btn btn-primary">{{ form.submit.label }}</button>
 </form>
 
+<!-- Display Data-->
 <table class="table">
   <thead>
     <tr>
